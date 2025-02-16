@@ -1,4 +1,4 @@
-name: Formating validation
+name: Prettier
 
 on:
   pull_request:
