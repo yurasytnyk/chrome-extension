@@ -11,10 +11,6 @@ on:
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && 
-            github.event.workflow_run.workflow == 'Lint' && 
-            github.event.workflow_run.workflow == 'Prettier' && 
-            github.event.workflow_run.workflow == 'Localazy download' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
