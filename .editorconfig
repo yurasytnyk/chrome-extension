@@ -1,0 +1,30 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Set default charset for multiple file types
+[*.{js,jsx,ts,tsx}]
+charset = utf-8
+
+# 2 space indentation for JavaScript and TypeScript
+[*.{js,ts,jsx,tsx}]
+indent_style = space
+indent_size = 2
+
+# 2 space indentation for CSS, SCSS, and LESS
+[*.{css,scss,less}]
+indent_style = space
+indent_size = 2
+
+# Tab indentation for Makefiles
+[Makefile]
+indent_style = tab
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2

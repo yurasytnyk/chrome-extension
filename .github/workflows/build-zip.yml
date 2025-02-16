@@ -1,0 +1,35 @@
+name: Build And Upload Extension Zip Via Artifact
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+
+
+  build:
+    needs: localazy-download # Ensure build waits for Localazy to finish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile --prefer-offline
+
+      # Download Localazy artifact before building
+      - uses: actions/download-artifact@v4
+        with:
+          name: localazy-files
+          path: src/locales/
+
+      - run: pnpm build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extension-build
+          path: dist/*

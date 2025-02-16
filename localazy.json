@@ -1,0 +1,13 @@
+{
+  "writeKey": "your-apps-write-key", 
+  "readKey": "your-apps-read-key",
+  "upload": {
+    "type": "json",
+    "files": "src/locales/en/en.json"
+  },
+  "download": {
+    "files": "src/locales/${lang}/${lang}.json",
+    "metadataFileTs": "src/languages.ts",
+    "includeSourceLang": false
+  }
+}
