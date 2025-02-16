@@ -1,7 +1,20 @@
 name: Build
 
 on:
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        description: 'Environment'
+        required: false
+        default: 'prod'
+        options:
+          - prod
+      branch:
+        type: string
+        description: 'Deployment Branch'
+        default: 'main'
+        required: false
 
 jobs:
   localazy-download:
