@@ -1,15 +1,16 @@
-name: Build And Upload Extension Zip Via Artifact
+name: Build
 
 on:
   push:
     branches: [ main ]
   pull_request:
+  workflow_run:
+    workflows: ["Localazy download"]
+    types:
+      - completed
 
 jobs:
-
-
   build:
-    needs: localazy-download # Ensure build waits for Localazy to finish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,8 +22,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile --prefer-offline
 
-      # Download Localazy artifact before building
-      - uses: actions/download-artifact@v4
+      - name: Download Localazy artifact
+        uses: actions/download-artifact@v4
         with:
           name: localazy-files
           path: src/locales/
