@@ -1,16 +1,30 @@
 name: Build
 
 on:
-  workflow_run:
-    workflows:
-      - "Lint" 
-      - "Prettier"
-      - "Localazy download"
-    types:
-      - completed
+  pull_request:
+  push:
+    branches: [ main ]
 
 jobs:
+  localazy-download:
+    name: Download strings from Localazy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: localazy/download@v1
+        with:
+          read_key: ${{ secrets.LOCALAZY_READ_KEY }}
+          write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
+
+      - run: ls src/locales/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: localazy-files
+          path: src/locales/
+
   build:
+    needs: localazy-download
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +40,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: localazy-files
-          path: src/locales/**/*.json
+          path: src/locales/
 
       - run: pnpm build
 
