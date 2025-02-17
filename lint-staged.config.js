@@ -3,7 +3,8 @@
  * @type {import('lint-staged').Configuration}
  */
 export default {
-  "*.{js,jsx,ts,tsx,json}": "pnpm prettier",
-  "*.{js,jsx,ts,tsx,json}": "pnpm lint",
-  "*.{ts,tsx}": "pnpm type-check",
+  "*.{ts,tsx}": () => "pnpm typecheck",
+  "*.{js,jsx,ts,tsx,json,css,html,md,yml}": (files) => {
+    return ["pnpm lint", `pnpm prettier ${files.join(" ")}`];
+  },
 };

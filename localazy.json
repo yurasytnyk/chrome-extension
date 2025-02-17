@@ -6,8 +6,6 @@
     "files": "src/locales/en/en.json"
   },
   "download": {
-    "files": "src/locales/${lang}/${lang}.json",
-    "metadataFileTs": "src/languages.ts",
-    "includeSourceLang": false
+    "files": "src/locales/${lang}/${lang}.json"
   }
 }
