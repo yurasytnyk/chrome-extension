@@ -9,11 +9,12 @@ insert_final_newline = true
 # Set default charset for multiple file types
 [*.{js,jsx,ts,tsx}]
 charset = utf-8
-
-# 2 space indentation for JavaScript and TypeScript
-[*.{js,ts,jsx,tsx}]
 indent_style = space
 indent_size = 2
+tab_width = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
 
 # 2 space indentation for CSS, SCSS, and LESS
 [*.{css,scss,less}]
